@@ -12,12 +12,21 @@ class App extends Component {
     this.setState({inputtext: event.target.value});
   }
 
+  deleteHandler = (index) => {
+    console.log("sure")
+    const holdingpen = this.state.inputtext.split('');
+    holdingpen.splice(index, 1);
+    const newList = holdingpen.join('');
+    this.setState({inputtext: newList})
+  }
+
   render() {
 
     const charList = this.state.inputtext.split('').map((ch, index) => {
       return <Char
         character = {ch}
-        key = {index} />;
+        key = {index}
+        clicked = {() => this.deleteHandler(index)} />;
     });
 
     return (
